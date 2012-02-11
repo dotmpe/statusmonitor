@@ -1,0 +1,5 @@
+
+[submodule "lib/haxe-hydrax"]
+	path = lib/haxe-hydrax
+	url = git://github.com/dionjwa/Hydrax.git
+
