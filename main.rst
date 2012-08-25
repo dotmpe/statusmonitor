@@ -1,8 +1,9 @@
-StatusMonitor is fullscreen graphical monitor for system properties and
-proccesses.
+StatusMonitor is a fullscreen graphical monitor for system properties and
+proccesses. It aims for a generic approach to accumulate and update externally 
+processed reports, and emphasizes on the presentation layer.
 
 1. The project to aims to provide an integrated view of assorted workflows
-in a medium sized SaaS/web-development company. 
+   in a medium sized SaaS/web-development company. 
 2. It should do away with manual inspection of servers. 
 3. It will provide a continuous slideshow of reports, emphasizing important screens.
 4. It will run as DHTML application, fully interactively browsable.
