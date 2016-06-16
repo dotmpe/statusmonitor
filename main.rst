@@ -1,3 +1,22 @@
+:created: 2012-01-30
+:updated: 2016-06-04
+
+
+Initial version is uncompleted HaXe base.
+At the moment want an terminal (ncurses) version,
+and may as well setup an NPM+Blessed setup for that.
+
+https://groups.google.com/forum/#!topic/haxelang/ZU6YsV7K51Q
+May want to look into continueing it with an ANSI library.
+Such as SmilyOrg/ansi.
+Maybe wrap nsf/termbox.
+
+
+----
+
+Old ReadMe
+
+
 StatusMonitor is a fullscreen graphical monitor for system properties and
 proccesses. It aims for a generic approach to accumulate and update externally
 processed reports, and emphasizes on the presentation layer.
