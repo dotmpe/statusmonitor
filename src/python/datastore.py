@@ -1,6 +1,7 @@
 """
+SQL schema w.i.p.
 ::
-  
+
   Record >---.--- Job >---.--- Script ---< Extract
    - key     |            |     - path      - key
    - value   |            |                 - regex
@@ -40,7 +41,7 @@ class Host(SqlBase):
     host_id = Column('id', Integer, primary_key=True)
     hostname = Column(String)
 
-    records = relationship(Record, 
+    records = relationship(Record,
             primaryjoin=Record.host_id==host_id,
             backref='host')
 
@@ -49,7 +50,7 @@ class Schedule(SqlBase):
     schedule_id = Column('id', Integer, primary_key=True)
     cronstring = Column(String, unique=True, index=True, nullable=False)
 
-    jobs = relationship(Job, 
+    jobs = relationship(Job,
             primaryjoin=Job.schedule_id==schedule_id,
             backref='schedule')
 
@@ -58,12 +59,12 @@ class Script(SqlBase):
     script_id = Column('id', Integer, primary_key=True)
     path = Column(String, unique=True, index=True)
 
-    jobs = relationship(Job, 
+    jobs = relationship(Job,
             primaryjoin=Job.script_id==script_id,
             backref='script')
 
-    extracts = relationship('Extract', 
-            primaryjoin='scripts.id == extracts.script_id', 
+    extracts = relationship('Extract',
+            primaryjoin='scripts.id == extracts.script_id',
             backref='script')
 
 class Extract(SqlBase):
@@ -77,7 +78,7 @@ class Extract(SqlBase):
 def get_session(dbref, create=False):
     engine = create_engine(dbref, encoding='utf8')
     if create:
-        SqlBase.metadata.create_all(engine)  # issue DDL create 
+        SqlBase.metadata.create_all(engine)  # issue DDL create
         #print 'Updated schema'
     session = sessionmaker(bind=engine)()
     return session

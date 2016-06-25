@@ -51,6 +51,17 @@ $(BUILD_$/)monitor.n: $(HX_$d)
 	@$(ll) file_ok "$@"
 
 #      ------------ -- 
+
+var/urwid/examples:: 
+	mkdir -vp $@
+	cd $@ ; for name in tour graph edit browse subproc pallete_test pop_up bigtext; \
+	do test -e "$$name.py" || wget https://raw.githubusercontent.com/urwid/urwid/master/examples/$$name.py; \
+	done
+
+TRGT += var/urwid/examples
+
+
+#      ------------ -- 
 #
 include                $(MK_SHARE)Core/Main.dirstack-pop.mk
 # vim:noet:
