@@ -4,61 +4,20 @@ MK                  += $(MK_$d)
 #
 #      ------------ -- 
 
-CLN += $(shell find ./ -name '*.pyc')
 
-#      ------------ -- 
-#
-
-STRGT +=  init-tmp-db
-TRGT  +=  init-tmp-db
-
-init-tmp-db:
-	@python src/python/datastore.py
-	@$(call log,Done,$@)
+ifneq ($(call get-bin,python),)
+include                ./Rules.python.mk
+endif
 
 #      ------------ -- 
 
-monitor_$d          := $(BUILD_$/)monitor/index.php\
-                       $(BUILD_$/)monitor.js\
-                       $(BUILD_$/)monitor.n
-monitor: $(monitor_$d)
+ifneq ($(shell which haxe),)
+BIN                 += haxe=$(shell which haxe)
+endif
 
-TRGT                += $(monitor_$d)
-CLN                 += $(monitor_$d)
-
-#      ------------ --
-
-HX                  := 
-HX_$d               := $(shell find $/src/haxe/ -iname '*.hx')
-HX_CP               := $/src/haxe $/test/hx
-
-$(BUILD_$/)monitor.js: $(HX_$d)
-	@$(ll) file_target "$@"
-	@$(mk-target)
-	@haxe $(HX) $(HX_CP:%=-cp %) -main com.dotmpe.statusmonitor.Client -js $@
-	@$(ll) file_ok "$@"
-
-$(BUILD_$/)monitor/index.php: $(HX_$d)
-	@$(ll) file_target "$@"
-	@$(mk-target)
-	@haxe $(HX) $(HX_CP:%=-cp %) -main com.dotmpe.statusmonitor.Server -php $(@D)
-	@$(ll) file_ok "$@"
-
-$(BUILD_$/)monitor.n: $(HX_$d)
-	@$(ll) file_target "$@"
-	@$(mk-target)
-	@haxe $(HX) $(HX_CP:%=-cp %) -main com.dotmpe.statusmonitor.Server -neko $@
-	@$(ll) file_ok "$@"
-
-#      ------------ -- 
-
-var/urwid/examples:: 
-	mkdir -vp $@
-	cd $@ ; for name in tour graph edit browse subproc pallete_test pop_up bigtext; \
-	do test -e "$$name.py" || wget https://raw.githubusercontent.com/urwid/urwid/master/examples/$$name.py; \
-	done
-
-TRGT += var/urwid/examples
+ifneq ($(call get-bin,haxe),)
+include                ./Rules.haxe.mk
+endif
 
 
 #      ------------ -- 

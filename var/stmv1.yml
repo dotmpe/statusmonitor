@@ -1,0 +1,31 @@
+
+label: Foo
+states:
+- label: Baz
+  status: 0
+
+- label: Bar
+  states:
+  - label: Init
+    status: 0
+  - label: Check
+    status: 1
+  - label: Test
+    status: 2
+  - label: lib2
+    states:
+    - label: Test
+      status: 0
+  - label: lib1
+    states:
+    - label: lib3
+    - label: Check
+      status: 1
+    - label: Test
+      status: 0
+
+- label: Check
+  status: 0
+- label: Test
+  status: 0
+
