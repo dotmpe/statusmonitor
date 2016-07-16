@@ -13,6 +13,9 @@ class StatusWidget(urwid.TreeWidget):
     def update_w(self):
         self._w.attr = 'body'
 
+    #def load_inner_widget(self):
+    #    return urwid.BigText(self.get_display_text(),urwid.HalfBlock5x4Font())
+
     def get_display_text(self):
         node = self.get_node()
         return [ ( 'body', node.label +'  ') ] + node.states()

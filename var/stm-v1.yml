@@ -1,0 +1,69 @@
+
+label: /
+status: 0
+
+values:
+- label: States (Cum)
+  value: 12345
+- label: Checks (Cum)
+  value: 12345
+- label: Tests (Cum)
+  value: 12345
+
+states:
+- label: Home
+
+- label: Volumes
+
+- label: Dev
+
+  states:
+  - label: Script-mpe
+    status: 0
+
+    states:
+    - label: Init
+      status: 0
+
+    - label: Check
+      status: 0
+
+    - label: Test
+      status: 0
+      states:
+      - label: Bats
+        status: 0
+      - label: Grunt
+        status: 0
+      - label: Python Unittests
+        status: 0
+
+  - label: Baz
+    status: 0
+
+  - label: Bar
+    states:
+    - label: Init
+      status: 0
+    - label: Check
+      status: 1
+    - label: Test
+      status: 2
+    - label: lib2
+      states:
+      - label: Test
+        status: 0
+    - label: lib1
+      states:
+      - label: lib3
+      - label: Check
+        status: 1
+      - label: Test
+        status: 0
+
+  - label: Check
+    status: 0
+  - label: Test
+    status: 0
+
+

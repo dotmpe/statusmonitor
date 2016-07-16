@@ -55,7 +55,7 @@ if __name__ == '__main__':
     import statusmonitor
     from statusmonitor import simplebackend
 
-    backend = simplebackend.load_tree_from_yaml('var/stmv1.yml')
+    backend = simplebackend.load_tree_from_yaml('var/stm-v1.yml')
 
     statusmonitor.urw_bstat.DirectoryBrowser(backend).main()
     #statusmonitor.urw_bstat.BStatMain().main(palette)
