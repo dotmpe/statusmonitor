@@ -26,7 +26,6 @@ class StatusNode(urwid.ParentNode):
     def __init__(self, data={}, parent=None):
         self.data = data
         self.id = self.data['id'] = str(uuid.uuid4())
-        print dir(self)
         if 'label' not in data:
             self.label = self.id
         else:
@@ -72,10 +71,9 @@ class StatusNode(urwid.ParentNode):
             )
 
 
-def load_tree_from_yaml(filename):
+def load_tree_from_yaml(fp):
     import yaml
-    data = yaml.safe_load(open(filename))
-
+    data = yaml.safe_load(fp)
     return StatusNode(data)
 
 

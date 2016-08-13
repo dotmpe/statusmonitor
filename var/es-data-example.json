@@ -1,0 +1,130 @@
+{
+	"took": 16,
+	"timed_out": false,
+	"_shards": {
+		"total": 5,
+		"successful": 5,
+		"failed": 0
+	},
+	"hits": {
+		"total": 77753,
+		"max_score": 0,
+		"hits": []
+	},
+	"aggregations": {
+		"my_agg1": {
+			"doc_count_error_upper_bound": 0,
+			"sum_other_doc_count": 0,
+			"buckets": [
+				{
+					"key": "a",
+					"doc_count": 77739,
+					"my_agg2": {
+						"doc_count_error_upper_bound": 0,
+						"sum_other_doc_count": 0,
+						"buckets": [
+							{
+								"key": 777,
+								"doc_count": 77721,
+								"my_agg3": {
+									"doc_count_error_upper_bound": 0,
+									"sum_other_doc_count": 0,
+									"buckets": [
+										{
+											"key": "1234",
+											"doc_count": 48889
+										},
+										{
+											"key": "5678",
+											"doc_count": 25439
+										},
+										{
+											"key": "9101",
+											"doc_count": 3193
+										},
+										{
+											"key": "9111",
+											"doc_count": 196
+										}
+									]
+								}
+							},
+							{
+								"key": 888,
+								"doc_count": 17,
+								"my_agg3": {
+									"doc_count_error_upper_bound": 0,
+									"sum_other_doc_count": 0,
+									"buckets": [
+										{
+											"key": "1234",
+											"doc_count": 9
+										},
+										{
+											"key": "1233",
+											"doc_count": 4
+										},
+										{
+											"key": "1244",
+											"doc_count": 3
+										},
+										{
+											"key": "1230",
+											"doc_count": 1
+										}
+									]
+								}
+							},
+							{
+								"key": 999,
+								"doc_count": 1,
+								"my_agg3": {
+									"doc_count_error_upper_bound": 0,
+									"sum_other_doc_count": 0,
+									"buckets": [
+										{
+											"key": "1261",
+											"doc_count": 1
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"key": "s",
+					"doc_count": 6,
+					"my_agg2": {
+						"doc_count_error_upper_bound": 0,
+						"sum_other_doc_count": 0,
+						"buckets": [
+							{
+								"key": 888,
+								"doc_count": 6,
+								"my_agg3": {
+									"doc_count_error_upper_bound": 0,
+									"sum_other_doc_count": 0,
+									"buckets": [
+										{
+											"key": "1200",
+											"doc_count": 4
+										},
+										{
+											"key": "1210",
+											"doc_count": 1
+										},
+										{
+											"key": "1216",
+											"doc_count": 1
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	}
+}

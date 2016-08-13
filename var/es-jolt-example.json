@@ -1,0 +1,44 @@
+[
+  {
+    "operation": "shift",
+    "spec": {
+      "aggregations": {
+        "my_agg1": {
+          "buckets": {
+            "*": {
+              "my_agg2": {
+                "buckets": {
+                  "*": {
+                    "my_agg3": {
+                      "buckets": {
+                        "*": {
+                          "key": "agg3[]",
+                          "@(3,key)": "agg2[]",
+                          "@(6,key)": "agg1[]"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "operation": "shift",
+    "spec": {
+      "agg1": {
+        "*": "[&][0]"
+      },
+      "agg2": {
+        "*": "[&][1]"
+      },
+      "agg3": {
+        "*": "[&][2]"
+      }
+    }
+  }
+]

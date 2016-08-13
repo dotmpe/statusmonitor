@@ -28,6 +28,7 @@ Dev (redmine.dandy.wtwta.org)
     - Display status as a collection of tree table view record lines.
 
 """
+from __future__ import print_function
 
 import urwid
 
@@ -55,8 +56,13 @@ if __name__ == '__main__':
     import statusmonitor
     from statusmonitor import simplebackend
 
-    backend = simplebackend.load_tree_from_yaml('var/stm-v1.yml')
+    if len(sys.argv) > 1:
+        befile = sys.argv[1]
+    else:
+        befile = 'var/stm-v1.yml'
 
-    statusmonitor.urw_bstat.DirectoryBrowser(backend).main()
+    fp = open(befile)
+    backend = simplebackend.load_tree_from_yaml(fp)
+    statusmonitor.urw_bstat.DirectoryBrowser(backend).main(fp)
     #statusmonitor.urw_bstat.BStatMain().main(palette)
 

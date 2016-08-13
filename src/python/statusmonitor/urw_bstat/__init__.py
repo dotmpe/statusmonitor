@@ -266,16 +266,23 @@ class DirectoryBrowser:
             header=urwid.AttrWrap(self.header, 'head'),
             footer=self.footer)
 
-    def main(self):
+    def on_data(self):
+        print("TODO: data changed, reload")
+        #self.fp.readlines()
+
+    def main(self, fp):
         """Run the program."""
 
         self.loop = urwid.MainLoop(self.view, self.palette,
             unhandled_input=self.unhandled_input)
+
+        #self.fp = fp
+        #self.loop.watch_file(fp.fileno(), self.on_data)
         self.loop.run()
 
         # on exit, write the flagged filenames to the console
         names = [escape_filename_sh(x) for x in get_flagged_names()]
-        print " ".join(names)
+        print(" ".join(names))
 
     def unhandled_input(self, k):
         # update display of focus directory
