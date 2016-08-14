@@ -112,7 +112,8 @@ class DirectoryWidget(FlagFileWidget):
         self.__super.__init__(node)
         path = node.get_value()
         add_widget(path, self)
-        self.expanded = starts_expanded(path)
+        assert node.data
+        self.expanded = starts_expanded(node)
         self.update_expanded_icon()
 
     def get_display_text(self):
@@ -220,7 +221,7 @@ class DirectoryNode(urwid.ParentNode):
 
 class DirectoryBrowser:
     palette = [
-        ('body', 'black', 'light gray'),
+        ('body', 'black', 'light gray'),#, '', '#fff', '#60d'),
         #('body', 'dark gray', 'black'),
         #('body', 'light gray', 'dark gray'),
         ('flagged', 'black', 'dark green', ('bold','underline')),
@@ -326,20 +327,12 @@ def store_initial_cwd(name):
     global _initial_cwd
     _initial_cwd = name.split(dir_sep())
 
-def starts_expanded(name):
+def starts_expanded(node):
     """Return True if directory is a parent of initial cwd."""
 
-    if name is '/':
+    if 'status' in node.data and node.data['status']:
         return True
-
-    l = name.split(dir_sep())
-    if len(l) > len(_initial_cwd):
-        return False
-
-    if l != _initial_cwd[:len(l)]:
-        return False
-
-    return True
+    return False
 
 
 def escape_filename_sh(name):

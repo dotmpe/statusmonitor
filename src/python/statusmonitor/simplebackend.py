@@ -10,6 +10,13 @@ class StatusWidget(urwid.TreeWidget):
         self._w = urwid.AttrWrap(self._w, None)
         self.update_w()
 
+        if 'status' in node.data and node.data['status']:
+            self.expanded = True
+        else:
+            self.expanded = False
+        self.update_expanded_icon()
+
+
     def update_w(self):
         self._w.attr = 'body'
 
@@ -19,12 +26,15 @@ class StatusWidget(urwid.TreeWidget):
     def get_display_text(self):
         node = self.get_node()
         tag = 'body'
-        if node.label.lower() not in StatusNode.named and 'status' in node.data and not node.data['states']:
+        states = node.states()
+        if node.label.lower() not in StatusNode.named and 'status' in node.data and not states:
+
+            #and not node.data['states']:
             if node.data['status'] == 1:
-                tag = 'failedf'
-            elif node.data['status'] > 1:
                 tag = 'erroredf'
-        return [ ( tag, node.label ), ( 'body', '  '), ] + node.states()
+            elif node.data['status'] > 1:
+                tag = 'failedf'
+        return [ ( tag, node.label ), ( 'body', '  '), ] + states
 
 
 class StatusNode(urwid.ParentNode):
@@ -55,7 +65,7 @@ class StatusNode(urwid.ParentNode):
     def load_widget(self):
         return StatusWidget(self)
 
-    named = [ 'init', 'check', 'test' ]
+    named = [ 'init', 'check', 'build', 'test', 'dist', 'pub' ]
 
     def states(self):
         states = {}
