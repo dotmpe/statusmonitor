@@ -20,7 +20,13 @@ python test/py/pd_to_states.py \
  || exit $?
 
 
-jsotk yaml2json ~/.projects.yaml projects.json
-./bin/pd-to-states.py projects.json statusmonitor.yaml
+jsotk yaml2json ~/.projects.yaml home.json
+./bin/pd-to-states.py home.json statusmonitor.yaml
 jsotk --pretty yaml2json statusmonitor.yaml statusmonitor.json
+
+jsotk yaml2json ~/project/.projects.yaml projects.json
+./bin/pd-to-states.py projects.json statusmonitor-2.yaml
+jsotk --pretty yaml2json statusmonitor-2.yaml statusmonitor-2.json
+
+#jsotk --pretty update statusmonitor.json statusmonitor-2.yaml
 

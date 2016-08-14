@@ -236,6 +236,9 @@ class DirectoryBrowser:
         ('passed', 'light green,standout', 'light gray', '', '', ''),
         ('errored', 'light red,standout', 'light gray', '', '', ''),
         ('failed', 'yellow,standout', 'light gray', '', '', ''),
+
+        ('failedf', 'brown', 'light gray', '', '', ''),
+        ('erroredf', 'dark red', 'light gray', '', '', ''),
     ]
 
     footer_text = [

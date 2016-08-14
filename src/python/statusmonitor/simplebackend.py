@@ -18,7 +18,13 @@ class StatusWidget(urwid.TreeWidget):
 
     def get_display_text(self):
         node = self.get_node()
-        return [ ( 'body', node.label +'  ') ] + node.states()
+        tag = 'body'
+        if node.label.lower() not in StatusNode.named and 'status' in node.data and not node.data['states']:
+            if node.data['status'] == 1:
+                tag = 'failedf'
+            elif node.data['status'] > 1:
+                tag = 'erroredf'
+        return [ ( tag, node.label ), ( 'body', '  '), ] + node.states()
 
 
 class StatusNode(urwid.ParentNode):
