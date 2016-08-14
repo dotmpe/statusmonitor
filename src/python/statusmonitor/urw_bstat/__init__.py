@@ -221,6 +221,8 @@ class DirectoryNode(urwid.ParentNode):
 class DirectoryBrowser:
     palette = [
         ('body', 'black', 'light gray'),
+        #('body', 'dark gray', 'black'),
+        #('body', 'light gray', 'dark gray'),
         ('flagged', 'black', 'dark green', ('bold','underline')),
         ('focus', 'light gray', 'dark blue', 'standout'),
         ('flagged focus', 'yellow', 'dark cyan',
@@ -238,6 +240,7 @@ class DirectoryBrowser:
         ('failed', 'yellow,standout', 'light gray', '', '', ''),
 
         ('failedf', 'brown', 'light gray', '', '', ''),
+        #('failedf', 'brown', 'dark gray', '', '', ''),
         ('erroredf', 'dark red', 'light gray', '', '', ''),
     ]
 
