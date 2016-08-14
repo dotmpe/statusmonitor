@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
-[2016-08-13] Started writing Py script, but abbandoned ifo JOLT transform spec
-experiment first.
+Transform Pd schema to STM schema.
+Source schema is too terse for Jolt.
 
 Source format::
 
@@ -56,19 +56,14 @@ def get_comp( data, label ):
         if state['label'] == label:
             return state
 
-def new_state(label, states=[], status=None):
+def new_state(label, states=None, status=None):
+    if not states: states=[]
     return dict(states=states, label=label, status=status)
 
 def init_state(data, key, status=None):
-    sub = None
-    if 'states' in data:
-        sub = get_comp( data, key)
-    if sub:
-        sub['status'] = status
-    else:
-        sub = new_state(key, status=status)
-        if data:
-            data['states'].append(sub)
+    sub = new_state(key.title(), status=status)
+    if data:
+        data['states'].append(sub)
     return sub
 
 def set_path( data, prefix, state, o ):
@@ -76,13 +71,24 @@ def set_path( data, prefix, state, o ):
     assert data
     assert isinstance(data, dict) , ( data, prefix, state, o )
 
+    sc = None
     c = data
-    els = prefix.split('/')
+    els = (prefix +'/'+ state).split('/')
+    if els[-1].lower() == 'result':
+        els.pop()
+    el = els.pop(0)
+    assert data['label'] == el.title()
     while els:
         el = els.pop(0)
-        c = init_state( c, el )
-
-    #init_state( c, state, o )
+        sc = get_comp( c, el.title() )
+        if not sc:
+            if not els:
+                sc = init_state(c, el, o)
+            else:
+                sc = init_state(c, el)
+        assert sc, (c, el)
+        c = sc
+    return sc
 
 def set_states( tod, prefix, fromd ):
     for state, o in fromd.items():
@@ -94,14 +100,13 @@ def set_states( tod, prefix, fromd ):
 def run(fromfp, tofp):
 
     out = new_state('~')
-    home = init_state( out, '~' )
     assert out
     data = yaml.safe_load(fromfp)
 
     for prefix, record in data['repositories'].items():
         set_states(out, '~/'+prefix, record['status'])
 
-    pprint.pprint(home)
+    tofp.write(yaml.dump(out))
 
 
 if __name__ == '__main__':
@@ -111,6 +116,6 @@ if __name__ == '__main__':
     if sys.argv[1] == '-': inf = sys.stdin
     else: inf = open(sys.argv[1])
     if sys.argv[2] == '-': outf = sys.stdout
-    else: outf = open(sys.argv[2])
+    else: outf = open(sys.argv[2], 'w+')
     sys.exit(run(inf, outf))
 

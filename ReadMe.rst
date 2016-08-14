@@ -61,6 +61,9 @@ src
   haxe
     - 2012 Prototype
 
+bin
+  pd-to-states.py
+
 History
 -------
 - 2012 intial code HaXe for x-compilable HTML-based view generator. Some Py.
