@@ -1,3 +1,6 @@
 monitor*
 *.pyc
 var/urwid/examples
+var/pd-data.json
+var/pd-data-out.json
+var/pd-data-out.yml

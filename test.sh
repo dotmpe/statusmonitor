@@ -19,14 +19,21 @@ python test/py/pd_to_states.py \
   && echo "OK - Python pd-to-states unit tests" \
  || exit $?
 
+jsotk yaml2json var/pd-data.yml var/pd-data.json
+./bin/pd-to-states.py var/pd-data.json var/pd-data-out.yml
+jsotk --pretty yaml2json var/pd-data-out.yml var/pd-data-out.json
 
-jsotk yaml2json ~/.projects.yaml home.json
-./bin/pd-to-states.py home.json statusmonitor.yaml
-jsotk --pretty yaml2json statusmonitor.yaml statusmonitor.json
+test -e ~/.projects.yaml && {
+  jsotk yaml2json ~/.projects.yaml home.json
+  ./bin/pd-to-states.py home.json statusmonitor.yaml
+  jsotk --pretty yaml2json statusmonitor.yaml statusmonitor.json
+}
 
-jsotk yaml2json ~/project/.projects.yaml projects.json
-./bin/pd-to-states.py projects.json statusmonitor-2.yaml
-jsotk --pretty yaml2json statusmonitor-2.yaml statusmonitor-2.json
+test -e ~/project/.projects.yaml && {
+  jsotk yaml2json ~/project/.projects.yaml projects.json
+  #./bin/pd-to-states.py projects.json statusmonitor-2.yaml
+  #jsotk --pretty yaml2json statusmonitor-2.yaml statusmonitor-2.json
+}
 
 #jsotk --pretty update statusmonitor.json statusmonitor-2.yaml
 

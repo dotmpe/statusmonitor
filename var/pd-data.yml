@@ -1,0 +1,53 @@
+repositories:
+  .conf:
+    status:
+      bats:
+        result: 0
+        specs: 0
+      check: 0
+      git:
+        status:
+          result: 0
+      test: 0
+  Applications:
+    status: {}
+  Desktop:
+    enabled: true
+    status:
+      check: 0
+      fs:
+        clean:
+          result: 0
+  Documents:
+    status: {}
+  Downloads:
+    status:
+      check: 0
+  Library:
+    status: {}
+  Movies:
+    status: {}
+  Music:
+    status: {}
+  Pictures:
+    status: {}
+  Public:
+    enabled: true
+    status: {}
+  VirtualBox-VMs:
+    status: {}
+  bin:
+    enabled: true
+    status:
+      bats:
+        result: 0
+        specs: 0
+      build: 0
+      check: 0
+      git:
+        status: 0
+      git-versioning: 0
+      test: 0
+      vagrant:
+        result: 0
+

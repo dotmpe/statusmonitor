@@ -1,0 +1,21 @@
+sudo: false
+
+install:
+- "source ./install-dependencies.sh && install_jolt"
+- "source ./install-dependencies.sh && install_script"
+
+addons:
+  apt:
+    packages:
+      - realpath
+      - uuid-runtime
+
+script:
+- ./test.sh
+
+env:
+  global:
+    - PATH=$PATH:$HOME/bin:$HOME/usr/bin:$HOME/.local/bin/
+    - PYTHONPATH=$PYTHONPATH:$HOME/bin:$HOME/lib/py
+    - Build_Deps_Default_Paths=1
+
