@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #
 # CLI-Curses frontend for dotmpe/statusmonitor bstat (build status monitor)
 
@@ -62,7 +62,9 @@ if __name__ == '__main__':
         befile = 'var/stm-v1.yml'
 
     fp = open(befile)
-    backend = simplebackend.load_tree_from_yaml(fp)
-    statusmonitor.urw_bstat.DirectoryBrowser(backend).main(fp)
+    tree = simplebackend.load_tree_from_yaml(fp)
+    statusmonitor.urw_bstat.DirectoryBrowser.footer_text = [
+            ('title', 'Status tree')]
+    statusmonitor.urw_bstat.DirectoryBrowser(tree).main(fp)
     #statusmonitor.urw_bstat.BStatMain().main(palette)
 

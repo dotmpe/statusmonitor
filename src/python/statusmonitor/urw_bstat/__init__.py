@@ -54,6 +54,7 @@ class FlagFileWidget(urwid.TreeWidget):
 
     def keypress(self, size, key):
         """allow subclasses to intercept keystrokes"""
+        print("keypress %r" % key)
         key = self.__super.keypress(size, key)
         if key:
             key = self.unhandled_keys(size, key)
@@ -64,7 +65,9 @@ class FlagFileWidget(urwid.TreeWidget):
         Override this method to intercept keystrokes in subclasses.
         Default behavior: Toggle flagged on space, ignore other keys.
         """
+        print("unhandled_keys %r" % key)
         if key == " ":
+            print(self.flagged and "flagged" or "not flagged")
             self.flagged = not self.flagged
             self.update_w()
         else:
@@ -260,11 +263,11 @@ class DirectoryBrowser:
     ]
 
 
-    def __init__(self, backend):
+    def __init__(self, tree):
         cwd = os.getcwd()
         store_initial_cwd(cwd)
         self.header = urwid.Text("")
-        self.listbox = urwid.TreeListBox(urwid.TreeWalker(backend))
+        self.listbox = urwid.TreeListBox(urwid.TreeWalker(tree))
         self.listbox.offset_rows = 1
         self.footer = urwid.AttrWrap(urwid.Text(self.footer_text),
             'foot')

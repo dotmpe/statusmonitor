@@ -5,9 +5,9 @@ MK                  += $(MK_$d)
 #      ------------ -- 
 
 
-ifneq ($(call get-bin,python),)
+#ifneq ($(call get-bin,python),)
 include                ./Rules.python.mk
-endif
+#endif
 
 #      ------------ -- 
 

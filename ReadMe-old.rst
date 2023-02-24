@@ -1,16 +1,5 @@
-
-[2016]
-  https://groups.google.com/forum/#!topic/haxelang/ZU6YsV7K51Q
-  May want to look into continueing it with an ANSI library.
-  Such as SmilyOrg/ansi.
-  Maybe wrap nsf/termbox.
-
-
-----
-
-Old ReadMe
-
-
+StatusMonitor 2012-2016
+=======================
 StatusMonitor is a fullscreen graphical monitor for system properties and
 proccesses. It aims for a generic approach to accumulate and update externally
 processed reports, and emphasizes on the presentation layer.

@@ -1,8 +1,6 @@
 bstat
 =====
-
-Outliner format and viewer for status info of build systems and maybe related
-systems.
+Viewer for experimental nested state tree.
 
 Below are specs that need to be tested.
 

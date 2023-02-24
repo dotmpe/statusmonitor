@@ -87,6 +87,12 @@ class StatusNode(urwid.ParentNode):
             )
 
 
+def load_tree_from_yaml_file(treefile):
+    fp = open(treefile)
+    tree = load_tree_from_yaml(fp)
+    fp.close()
+    return tree
+
 def load_tree_from_yaml(fp):
     import yaml
     data = yaml.safe_load(fp)
